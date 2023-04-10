@@ -12,13 +12,13 @@ def ucs(nodo_inicial, grafo, nodo_objetivo):
     while(cola):
 
         """""
-#           Proceso que sigue el algoritmo
-            print("---------------------------------------------------")
-            print("Nodo actual: ", nodo_actual)       
-            print("Cola: ", cola)
-            print("Pila: ", pila)
-            print("Visitados: ", visitados, "\n")
-            print("---------------------------------------------------")
+#       Muestra el proceso que sigue el algoritmo
+        print("---------------------------------------------------")
+        print("Nodo actual: ", nodo_actual)       
+        print("Cola: ", cola)
+        print("Pila: ", pila)
+        print("Visitados: ", visitados, "\n")
+        print("---------------------------------------------------")
         """
 
 #       Busca el camino de menor costo
