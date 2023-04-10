@@ -11,8 +11,9 @@ def ucs(nodo_inicial, grafo, nodo_objetivo):
 #   Seguimos explorando mientras haya caminos disponibles en la cola
     while(cola):
 
-        """""
+
 #       Muestra el proceso que sigue el algoritmo
+        """""
         print("---------------------------------------------------")
         print("Nodo actual: ", nodo_actual)       
         print("Cola: ", cola)
@@ -32,7 +33,6 @@ def ucs(nodo_inicial, grafo, nodo_objetivo):
         cola.pop(cola.index(nodo_actual))
             
 #       Agregamos a la cola los caminos adyacentes del nodo visitado
-        # nodo_actual[2] = True
         for adyacente in grafo[nodo_actual[0]]:    
             cola.append(adyacente)
         
@@ -70,7 +70,7 @@ def ucs(nodo_inicial, grafo, nodo_objetivo):
 
 
 
-grafo = {
+grafo1 = {
 #   Nodo: [[adyacente, costo]]
     1: [
         [2, 1], 
@@ -105,9 +105,31 @@ grafo = {
 }
 
 
+grafo2 = {
+    1: [
+        [2, 1], 
+        [3, 2]
+    ],
+    2: [
+        [4, 4], 
+        [5, 5]
+    ],
+    3: [
+        [5, 3]
+    ],
+    4: [
+        [6, 4]
+    ],
+    5: [
+        [6, 3]
+    ],
+    6: []
+}
+
+
 # Almacena los caminos disponibles para poder escoger el de menor costo
 cola = []
 pila = []
 visitados = []
 
-ucs(1, grafo, 6)
+ucs(1, grafo2, 6)
