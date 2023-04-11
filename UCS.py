@@ -9,7 +9,7 @@ def ucs(nodo_inicial, grafo, nodo_objetivo):
 
 
 #   Seguimos explorando mientras haya caminos disponibles en la cola
-    while(cola):
+    while cola:
 #       Busca el camino de menor costo
         costo_minimo = 999999999
         for i in range(0, len(cola)):
