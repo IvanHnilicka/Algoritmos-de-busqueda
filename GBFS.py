@@ -13,13 +13,16 @@ def gbfs(nodo_inicial, grafo, heuristicas, nodo_objetivo):
         closed.append(nodo_actual)
         open.pop(open.index(nodo_actual))
 
+#       Buscamos el nodo con menor euristica en la lista open
         for nodo in open:
             if heuristicas[nodo] < heuristicas[nodo_actual]:
                 nodo_actual = nodo
 
+#       Agregamos los adyacentes del nuevo nodo visitado
         for adyacente in grafo[nodo_actual]:
             open.append(adyacente[0])
 
+#   Quitamos el nodo visitado de la lista open y lo agregamos en la lista closed
     open.pop(open.index(nodo_actual))
     closed.append(nodo_actual)
 
