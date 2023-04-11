@@ -1,5 +1,5 @@
 def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
-    costo_ruta = 0
+    costo_acumulado = 0
     nodo_actual = nodo_inicial
     pila.append(nodo_actual)
 
@@ -13,16 +13,17 @@ def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 
 #   El algoritmo sigue mientras no se haya llegado al nodo objetivo 
     while nodo_actual != nodo_objetivo:
-        costo_minimo = 999999999        
-        print("Costo de ruta: ", costo_ruta)
+        print("Open: ", open)
+        print("Closed: ", closed)
+        print("Pila: ", pila, "\n")
+
+        costo_minimo = 999999999
         for nodo in open:
 #           Comparamos costos si el nodo es adyacente al ultimo en la ruta
             if grafo[pila[-1]].get(nodo):
-                if (grafo[pila[-1]][nodo] + heuristicas[nodo] + costo_ruta) < costo_minimo:                    
+                if (grafo[pila[-1]][nodo] + heuristicas[nodo] + costo_acumulado) < costo_minimo:
                     costo_minimo = grafo[pila[-1]][nodo] + heuristicas[nodo]
                     nodo_actual = nodo
-
-                costo_ruta += grafo[pila[-1]][nodo]
                     
 #           Si no es adyacente quitamos el ultimo nodo de la ruta hasta encontrar uno que sea adyacente y comparamos
             else:
@@ -33,21 +34,22 @@ def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
                     if not pila:
                         nodo_ruta = nodo
                         for i in range(len(closed) - 1, -1, -1):
+#                           Si los nodos son adyacentes lo agregamos a la ruta
                             if grafo[nodo_ruta].get(closed[i]) and grafo[closed[i]].get(nodo_ruta):
                                 nodo_ruta = closed[i]
                                 pila.insert(0, closed[i])
+                        break
 
-
-                if (grafo[pila[-1]][nodo] + heuristicas[nodo] + costo_ruta) < costo_minimo:
+#               Comparamos el costo del nuevo nodo
+                if (grafo[pila[-1]][nodo] + heuristicas[nodo] + costo_acumulado) < costo_minimo:
                     costo_minimo = grafo[pila[-1]][nodo] + heuristicas[nodo]
                     nodo_actual = nodo
+
 
 #       Quitamos el nodo actual de la lista open y añadimos sus nodos adyacentes
         open.pop(open.index(nodo_actual))
         for adyacente in grafo[nodo_actual]:
             open.append(adyacente)
-
-
 
 
 #       Si el nodo actual no es adyacente al ultimo de la ruta lo eliminamos
@@ -67,49 +69,59 @@ def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 #       Agregamos el nodo actual a la lista closed debido a que ya se visitó
         closed.append(nodo_actual)
         pila.append(nodo_actual)
-        
-        print("Open: ", open)
-        print("Closed: ", closed)
-        print("Pila: ", pila, "\n")
 
 
     print("Ruta encontrada: ", pila)
 
 
-
-grafo1 = {
+#   Grafos debens ser no dirigidos
 #   Nodo: [[adyacente, costo]]
-    1: [
-        [2, 3], 
-        [3, 2]
-       ], 
+grafo1 = {
+    1: {
+        2: 3, 
+        3: 2
+    }, 
 
-    2: [
-        [4, 4], 
-        [5, 1]
-       ],
+    2: {
+        1: 3,
+        4: 4, 
+        5: 1
+    },
 
-    3: [
-        [6, 3],
-        [7, 1]
-       ],
+    3: {
+        1: 2,
+        6: 3,
+        7: 1
+    },
 
-    4: [],
+    4: {
+        2: 4
+    },
 
-    5: [],
+    5: {
+        2: 1
+    },
 
-    6: [
-        [8, 5]
-       ],
+    6: {
+        3: 3,
+        8: 5
+    },
     
-    7: [
-        [9, 2],
-        [10, 3]
-       ],
+    7: {
+        3: 1,
+        9: 2,
+        10: 3
+    },
 
-    8: [],
-    9: [],
-    10: []
+    8: {
+        6: 5
+    },
+    9: {
+        7: 2
+    },
+    10: {
+        7: 3
+    }
 }
 
 
@@ -128,6 +140,7 @@ heuristica1 = {
 }
 
 
+#   Nodo: { Adyacente: costo }
 grafo2 = {
     'Arad': { 'Sibiu': 140, 'Timisoara': 118, 'Zerind': 75 },
     'Zerind': { 'Oradea': 71, 'Arad': 75 },
@@ -152,6 +165,7 @@ grafo2 = {
 }
 
 
+#   Nodo: Heuristica
 heuristica2 = {
     'Arad': 366,
     'Bucharest': 0,
@@ -181,4 +195,4 @@ open = []
 closed = []
 pila = []
 
-aStar('Arad', grafo2, heuristica2, 'Bucharest')
+aStar(1, grafo1, heuristica1, 10)
