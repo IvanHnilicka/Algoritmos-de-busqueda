@@ -1,36 +1,79 @@
 def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
+    costo_ruta = 0
     nodo_actual = nodo_inicial
-    nodo_menor_costo = nodo_actual
-    open.append(nodo_actual)
+    pila.append(nodo_actual)
+
+#   Agregamos el nodo inicial a la lista closed
+    closed.append(nodo_inicial)
+
+#   Agregamos sus nodos adyacentes a la lista open
+    for adyacente in grafo[nodo_inicial]:
+        open.append(adyacente)
 
 
-#   El algoritmo continua hasta llegar al nodo objetivo
-    while nodo_actual != nodo_objetivo:      
-
-        print("Open: ", open)
-        print("Closed: ", closed)
-        print("Nodo actual: ", nodo_actual)
-
-#       Buscamos el nodo con menor euristica en la lista open
+#   El algoritmo sigue mientras no se haya llegado al nodo objetivo 
+    while nodo_actual != nodo_objetivo:
+        costo_minimo = 999999999        
+        print("Costo de ruta: ", costo_ruta)
         for nodo in open:
-            if grafo[nodo_actual].get(nodo):
-#                print("Suma: ", heuristicas[nodo], "+", grafo[nodo_actual].get(nodo), " = ", heuristicas[nodo] + grafo[nodo_actual].get(nodo))
-                if (heuristicas[nodo] + grafo[nodo_actual].get(nodo)) < (heuristicas[nodo_actual] + grafo[nodo_actual].get(nodo)):
-                    nodo_menor_costo = nodo
-        
-        nodo_actual = nodo_menor_costo
+#           Comparamos costos si el nodo es adyacente al ultimo en la ruta
+            if grafo[pila[-1]].get(nodo):
+                if (grafo[pila[-1]][nodo] + heuristicas[nodo] + costo_ruta) < costo_minimo:                    
+                    costo_minimo = grafo[pila[-1]][nodo] + heuristicas[nodo]
+                    nodo_actual = nodo
+
+                costo_ruta += grafo[pila[-1]][nodo]
+                    
+#           Si no es adyacente quitamos el ultimo nodo de la ruta hasta encontrar uno que sea adyacente y comparamos
+            else:
+                while not grafo[pila[-1]].get(nodo):
+                    pila.pop(-1)
+
+#                   Si la ruta queda vacia generamos una nueva a partir del nodo que se esta comparando
+                    if not pila:
+                        nodo_ruta = nodo
+                        for i in range(len(closed) - 1, -1, -1):
+                            if grafo[nodo_ruta].get(closed[i]) and grafo[closed[i]].get(nodo_ruta):
+                                nodo_ruta = closed[i]
+                                pila.insert(0, closed[i])
 
 
-#       Agregamos los adyacentes del nuevo nodo visitado
+                if (grafo[pila[-1]][nodo] + heuristicas[nodo] + costo_ruta) < costo_minimo:
+                    costo_minimo = grafo[pila[-1]][nodo] + heuristicas[nodo]
+                    nodo_actual = nodo
+
+#       Quitamos el nodo actual de la lista open y añadimos sus nodos adyacentes
+        open.pop(open.index(nodo_actual))
         for adyacente in grafo[nodo_actual]:
             open.append(adyacente)
-        
-        open.pop(open.index(nodo_actual))
+
+
+
+
+#       Si el nodo actual no es adyacente al ultimo de la ruta lo eliminamos
+        while not grafo[pila[-1]].get(nodo_actual):
+            pila.pop(-1)
+
+#           Si la pila se queda vacía la llenamos con la nueva ruta
+            if not pila:
+                nodo = nodo_actual
+                for i in range(len(closed) - 1, -1, -1):
+#                   Si el nodo que se esta checando es adyacente lo agregamos al principio de la pila                    
+                    if grafo[closed[i]].get(nodo):
+                        nodo = closed[i]
+                        pila.insert(0, nodo)
+                break
+
+#       Agregamos el nodo actual a la lista closed debido a que ya se visitó
         closed.append(nodo_actual)
-        print("\n")
+        pila.append(nodo_actual)
+        
+        print("Open: ", open)
+        print("Closed: ", closed)
+        print("Pila: ", pila, "\n")
 
-    print("\nRuta encontrada: ", closed)
 
+    print("Ruta encontrada: ", pila)
 
 
 
@@ -86,7 +129,7 @@ heuristica1 = {
 
 
 grafo2 = {
-    'Arad': { 'Zerind': 75, 'Timisoara': 118, 'Sibiu': 140 },
+    'Arad': { 'Sibiu': 140, 'Timisoara': 118, 'Zerind': 75 },
     'Zerind': { 'Oradea': 71, 'Arad': 75 },
     'Oradea': { 'Sibiu': 151, 'Zerind': 71 },
     'Timisoara': { 'Lugoj': 111, 'Arad': 118 },
@@ -107,31 +150,6 @@ grafo2 = {
     'Iasi': { 'Neamt': 87, 'Vaslui': 92 },
     'Neamt': { 'Iasi': 87 }
 }
-
-"""""
-grafo2 = {
-    'Arad': { 'Zerind': 75, 'Timisoara': 118, 'Sibiu': 140 },
-    'Zerind': { 'Oradea': 71 },
-    'Oradea': { 'Sibiu': 151 },
-    'Timisoara': { 'Lugoj': 111 },
-    'Lugoj': { 'Mehadia': 70 },
-    'Mehadia': { 'Drobeta': 75 },
-    'Drobeta': { 'Craiova': 120 },
-    'Sibiu': { 'Fagaras': 99, 'Rimnicu Vilcea': 80 },
-    'Craiova': { 'Rimnicu Vilcea': 146, 'Pitesti': 138 },
-    'Rimnicu Vilcea': { 'Pitesti', 97 },
-    'Pitesti': { 'Bucharest': 101 },
-    'Fagaras': { 'Bucharest': 211 },
-    'Bucharest': { 'Giurgiu': 90 },
-    'Giurgiu': { },
-    'Urziceni': { 'Vaslui': 142 , 'Hirsova': 98 },
-    'Hirsova': { 'Eforie': 86 },
-    'Eforie': { },
-    'Vaslui': { 'Iasi': 92 },
-    'Iasi': { 'Neamt': 87 },
-    'Neamt': { }
-}
-"""
 
 
 heuristica2 = {
@@ -161,5 +179,6 @@ heuristica2 = {
 
 open = []
 closed = []
+pila = []
 
 aStar('Arad', grafo2, heuristica2, 'Bucharest')
