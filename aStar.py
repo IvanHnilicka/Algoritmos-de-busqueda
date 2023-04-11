@@ -45,13 +45,7 @@ def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 
         pila.append(nodo_actual)
         closed.append(nodo_actual)
-        
-        """""
-        print("Open: ", open)
-        print("Closed: ", closed)
-        print("Pila: ", pila, "\n")
-        """
-        
+
 #       Si el nodo actual es el nodo objetivo calculamos el costo de la ruta actual
         if(nodo_actual[0] == nodo_objetivo):
             costo_actual = 0
@@ -65,7 +59,6 @@ def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 
             print("Costo de ruta: ", costo_actual)
             return
-
 
 
 
@@ -116,7 +109,7 @@ grafo2 = {
     'Giurgiu': [['Bucharest', 90]],
     'Urziceni': [['Vaslui', 142], ['Hirsova', 98], ['Bucharest', 85]],
     'Hirsova': [['Eforie', 86], ['Urziceni', 98]],
-    'Eforie': ['Hirsova', 86],
+    'Eforie': [['Hirsova', 86]],
     'Vaslui': [['Iasi', 92], ['Urziceni', 142]],
     'Iasi': [['Neamt', 87], ['Vaslui', 92]],
     'Neamt': [['Iasi', 87]]
@@ -129,7 +122,7 @@ heuristica2 = {
     'Arad': 366,
     'Bucharest': 0,
     'Craiova': 160,
-    'Drobeta': 242,
+    'Dobreta': 242,
     'Eforie': 161,
     'Fagaras': 178,
     'Giurgiu': 77,
