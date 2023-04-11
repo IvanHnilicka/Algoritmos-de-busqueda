@@ -58,7 +58,7 @@ def ucs(nodo_inicial, grafo, nodo_objetivo):
 
 
 
-grafo1 = {
+grafoCostos1 = {
 #   Nodo: [[adyacente, costo]]
     1: [
         [2, 1], 
@@ -93,7 +93,7 @@ grafo1 = {
 }
 
 
-grafo2 = {
+grafoCostos2 = {
     1: [
         [2, 1], 
         [3, 2]
@@ -115,35 +115,9 @@ grafo2 = {
 }
 
 
-
-grafo3 = {
-    'Arad': [['Zerind', 75], ['Timisoara', 118], ['Sibiu', 140]],
-    'Zerind': [['Oradea', 71]],
-    'Oradea': [['Sibiu', 151]],
-    'Timisoara': [['Lugoj', 111]],
-    'Lugoj': [['Mehadia', 70]],
-    'Mehadia': [['Dobreta', 75]],
-    'Dobreta': [['Craiova', 120]],
-    'Sibiu': [['Fagaras', 99], ['Rimnicu Vilcea', 80]],
-    'Craiova': [['Rimnicu Vilcea', 146], ['Pitesti', 138]],
-    'Rimnicu Vilcea': [['Pitesti', 97]],
-    'Pitesti': [['Bucharest', 101]],
-    'Fagaras': [['Bucharest', 211]],
-    'Bucharest': [['Giurgiu', 90]],
-    'Giurgiu': [],
-    'Urziceni': [['Vaslui', 142], ['Hirsova', 98]],
-    'Hirsova': [['Eforie', 86]],
-    'Eforie': [],
-    'Vaslui': [['Iasi', 92]],
-    'Iasi': [['Neamt', 87]],
-    'Neamt': []
-}
-
-
-
 # Almacena los caminos disponibles para poder escoger el de menor costo
 cola = []
 pila = []
 visitados = []
 
-ucs('Arad', grafo3, 'Bucharest')
+ucs(1, grafoCostos1, 6)

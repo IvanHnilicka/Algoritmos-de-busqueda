@@ -81,27 +81,28 @@ heuristica1 = {
 }
 
 
+
 grafo2 = {
     'Arad': [['Zerind', 75], ['Timisoara', 118], ['Sibiu', 140]],
-    'Zerind': [['Oradea', 71]],
-    'Oradea': [['Sibiu', 151]],
-    'Timisoara': [['Lugoj', 111]],
-    'Lugoj': [['Mehadia', 70]],
-    'Mehadia': [['Dobreta', 75]],
-    'Dobreta': [['Craiova', 120]],
-    'Sibiu': [['Fagaras', 99], ['Rimnicu Vilcea', 80]],
-    'Craiova': [['Rimnicu Vilcea', 146], ['Pitesti', 138]],
-    'Rimnicu Vilcea': [['Pitesti', 97]],
-    'Pitesti': [['Bucharest', 101]],
-    'Fagaras': [['Bucharest', 211]],
-    'Bucharest': [['Giurgiu', 90]],
-    'Giurgiu': [],
-    'Urziceni': [['Vaslui', 142], ['Hirsova', 98]],
-    'Hirsova': [['Eforie', 86]],
-    'Eforie': [],
-    'Vaslui': [['Iasi', 92]],
-    'Iasi': [['Neamt', 87]],
-    'Neamt': []
+    'Zerind': [['Oradea', 71], ['Arad', 75]],
+    'Oradea': [['Sibiu', 151], ['Zerind', 71]],
+    'Timisoara': [['Lugoj', 111], ['Arad', 118]],
+    'Lugoj': [['Mehadia', 70], ['Timisoara', 111]],
+    'Mehadia': [['Dobreta', 75], ['Lugoj', 70]],
+    'Dobreta': [['Craiova', 120], ['Mehadia', 75]],
+    'Sibiu': [['Fagaras', 99], ['Rimnicu Vilcea', 80], ['Arad', 140], ['Oradea', 151]],
+    'Craiova': [['Rimnicu Vilcea', 146], ['Pitesti', 138], ['Dobreta', 120]],
+    'Rimnicu Vilcea': [['Pitesti', 97], ['Sibiu', 80]],
+    'Pitesti': [['Bucharest', 101], ['Rimnicu Vilcea', 97], ['Craiova', 138]],
+    'Fagaras': [['Bucharest', 211], ['Sibiu', 99]],
+    'Bucharest': [['Giurgiu', 90], ['Pitesti', 101], ['Fagaras', 211], ['Urziceni', 85]],
+    'Giurgiu': [['Bucharest', 90]],
+    'Urziceni': [['Vaslui', 142], ['Hirsova', 98], ['Bucharest', 85]],
+    'Hirsova': [['Eforie', 86], ['Urziceni', 98]],
+    'Eforie': ['Hirsova', 86],
+    'Vaslui': [['Iasi', 92], ['Urziceni', 142]],
+    'Iasi': [['Neamt', 87], ['Vaslui', 92]],
+    'Neamt': [['Iasi', 87]]
 }
 
 
