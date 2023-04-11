@@ -49,7 +49,8 @@ def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 #       Si el nodo actual es el nodo objetivo calculamos el costo de la ruta actual
         if(nodo_actual[0] == nodo_objetivo):
             costo_actual = 0
-            print("\nRuta: ", end = "")
+            print("Ruta: ", end = "")
+#           Validaciones para dar formato de impresión en consola
             for i in range(0, len(pila)):
                 costo_actual += pila[i][1]
                 if i != len(pila) - 1:
