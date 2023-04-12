@@ -133,6 +133,7 @@ heuristica2 = {
 }
 
 
+
 frontera = []
 explorados = []
 
