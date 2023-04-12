@@ -124,4 +124,6 @@ pila = []
 # Almacena los nodos que ya fueron visitados
 visitados = []
 
+
 ucs(1, grafoCostos1, 6)
+# ucs(1, grafoCostos2, 6)

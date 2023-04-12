@@ -1,7 +1,9 @@
 def alpha_beta(nodo, grafo, utilidades, profundidad, alpha, beta, turnoMax):
+#   Si se llego al ultimo nivel o el nodo no tiene sucesores retorna el valor de su utilidad
     if profundidad == 0 or not grafo[nodo]:
         return utilidades[nodo]
     
+#   Si es el turno de maximizar buscamos el valor mas alto de entre los dos nodos
     if turnoMax:
         valor_max = -999999999
         for adyacente in grafo[nodo]:
@@ -9,12 +11,15 @@ def alpha_beta(nodo, grafo, utilidades, profundidad, alpha, beta, turnoMax):
             valor_max = max(valor_max, valor)
             alpha = max(alpha, valor_max)
 
+#           Si alpha es mayor a beta dejamos de comparar valores
             if alpha >= beta:
                 break
 
         print("Valor maximo: ", valor_max)
         return valor_max
     
+
+#   Si es el turno de maximizar buscamos el valor mas alto de entre los dos nodos
     else:
         valor_min = 999999999
         for adyacente in grafo[nodo]:
@@ -22,6 +27,7 @@ def alpha_beta(nodo, grafo, utilidades, profundidad, alpha, beta, turnoMax):
             valor_min = min(valor_min, valor)
             beta = min(beta, valor)
 
+#           Si alpha es mayor a beta dejamos de comparar valores
             if alpha >= beta:
                 break
 
@@ -87,5 +93,5 @@ utilidad2 = {
 }
 
 
-# print("\nValor optimo: ", alpha_beta('A', grafo, utilidad1, 3, -999999999, 999999999, True))
-print("\nValor optimo: ", alpha_beta('A', grafo, utilidad2, 3, -999999999, 999999999, True))
+print("\nValor optimo: ", alpha_beta('A', grafo, utilidad1, 3, -999999999, 999999999, True))
+# print("\nValor optimo: ", alpha_beta('A', grafo, utilidad2, 3, -999999999, 999999999, True))
