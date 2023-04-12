@@ -1,7 +1,9 @@
 def minmax(nodo, grafo, utilidades, profundidad, turnoMax):
+#   Si llegamos al ultimo nivel o el nodo no tiene sucesores retornamos su valor
     if profundidad == 0 or not grafo[nodo]:
         return utilidades[nodo]
     
+#   Si es el turno de Maximizar buscamos el valor mas alto de entre las dos opciones
     if turnoMax:
         valor_max = -999999999
         for adyacente in grafo[nodo]:
@@ -9,6 +11,8 @@ def minmax(nodo, grafo, utilidades, profundidad, turnoMax):
             valor_max = max(valor_max, valor)
         print("Valor maximo: ", valor_max)
         return valor_max
+    
+#   Si es el turno de minimizar buscamos el valor mas bajo de entre las dos opciones
     else:
         valor_min = 999999999
         for adyacente in grafo[nodo]:
@@ -76,5 +80,5 @@ utilidad2 = {
 
 
 
-# print("\nValor optimo: ", minmax('A', grafo, utilidad1, 3, True))
-print("\nValor optimo: ", minmax('A', grafo, utilidad2, 3, True))
+print("\nValor optimo: ", minmax('A', grafo, utilidad1, 3, True))
+# print("\nValor optimo: ", minmax('A', grafo, utilidad2, 3, True))
