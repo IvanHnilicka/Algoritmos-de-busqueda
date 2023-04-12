@@ -1,24 +1,25 @@
-def minmax(nodo, grafo, profundidad, turnoMax):
+def minmax(nodo, grafo, utilidades, profundidad, turnoMax):
     if profundidad == 0 or not grafo[nodo]:
-        return utilidad1[nodo]
+        return utilidades[nodo]
     
     if turnoMax:
         valor_max = -999999999
         for adyacente in grafo[nodo]:
-            valor = minmax(adyacente, grafo, profundidad - 1, False)
+            valor = minmax(adyacente, grafo, utilidades, profundidad - 1, False)
             valor_max = max(valor_max, valor)
         print("Valor maximo: ", valor_max)
         return valor_max
     else:
         valor_min = 999999999
         for adyacente in grafo[nodo]:
-            valor = minmax(adyacente, grafo, profundidad - 1, True)
+            valor = minmax(adyacente, grafo, utilidades, profundidad - 1, True)
             valor_min = min(valor_min, valor)
         print("Valor minimo: ", valor_min)
         return valor_min
+    
 
 
-grafo1 = {
+grafo = {
     'A': ['B', 'C'],
     'B': ['D', 'E'],
     'C': ['F', 'G'],
@@ -55,4 +56,25 @@ utilidad1 = {
 }
 
 
-minmax('A', grafo1, 3, True)
+utilidad2 = {
+    'A': 0,
+    'B': 0,
+    'C': 0,
+    'D': 0,
+    'E': 0,
+    'F': 0,
+    'G': 0,
+    'H': 1,
+    'I': 1,
+    'J': 2,
+    'K': -3,
+    'L': 5,
+    'M': 7,
+    'N': -2,
+    'O': -4
+}
+
+
+
+# print("\nValor optimo: ", minmax('A', grafo, utilidad1, 3, True))
+print("\nValor optimo: ", minmax('A', grafo, utilidad2, 3, True))
