@@ -143,10 +143,34 @@ heuristica2 = {
 }
 
 
+grafo3 = {
+    'S': [['A', 5], ['B', 9], ['D', 6]],
+    'A': [['B', 3], ['G', 9]],
+    'B': [['A', 2], ['C', 1]],
+    'C': [['S', 6], ['G', 5], ['F', 7]],
+    'D': [['S', 1], ['C', 2], ['E', 2]],
+    'E': [['G', 7]],
+    'F': [['D', 2], ['G', 8]],
+    'G': []
+
+}
+
+heuristica3 = {
+    'S': 5,
+    'A': 7,
+    'B': 3,
+    'C': 4,
+    'D': 6,
+    'E': 5,
+    'F': 6,
+    'G': 0
+}
+
+
 
 open = []
 closed = []
 pila = []
 
 # aStar(1, grafo1, heuristica1, 10)
-aStar('Arad', grafo2, heuristica2, 'Bucharest')
+aStar('S', grafo3, heuristica3, 'G')
