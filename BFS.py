@@ -9,7 +9,7 @@ def bfs(nodo_inicial, grafo):
             cola.append(adyacente)
         
 #       Imprimimos el primer elemento y lo quitamos de la cola
-        print(cola[0])
+        print(cola[0], end = " - ")
         cola.pop(0)
 
 #       Hacemos que el nodo inicial sea el siguiente en la cola
@@ -19,7 +19,7 @@ def bfs(nodo_inicial, grafo):
 
 
 # Grafo1
-grafo = {
+grafo1 = {
 #   Nodo: [adyacentes] 
     1: [2, 3],
     2: [4, 5],
@@ -32,9 +32,8 @@ grafo = {
     9: []
 }
 
-"""""
-# Grafo2
-grafo = {
+
+grafo2 = {
     1: [],
     3: [1, 6],
     4: [],
@@ -45,10 +44,9 @@ grafo = {
     13: [],
     14: [13]
 }
-"""
 
 
 cola = []
 
-nodo_inicial = 1
-bfs(nodo_inicial, grafo)
+bfs(1, grafo1)
+# bfs(8, grafo2)

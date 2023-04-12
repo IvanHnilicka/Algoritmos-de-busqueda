@@ -37,7 +37,7 @@ def gbfs(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 
 
 
-grafo1 = {
+grafo_heuristica_1 = {
 #   Nodo: [[adyacente, costo]]
     1: [
         [2, 3], 
@@ -89,7 +89,7 @@ heuristica1 = {
 
 
 
-grafo2 = {
+grafo_heuristica_2 = {
     'Arad': [['Zerind', 75], ['Timisoara', 118], ['Sibiu', 140]],
     'Zerind': [['Oradea', 71], ['Arad', 75]],
     'Oradea': [['Sibiu', 151], ['Zerind', 71]],
@@ -141,5 +141,5 @@ heuristica2 = {
 open = []
 closed = []
 
-gbfs(1, grafo1, heuristica1, 10)
-# gbfs('Arad', grafo2, heuristica2, 'Bucharest')
+gbfs(1, grafo_heuristica_1, heuristica1, 10)
+# gbfs('Arad', grafo_heuristica_2, heuristica2, 'Bucharest')

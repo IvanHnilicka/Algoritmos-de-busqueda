@@ -63,7 +63,7 @@ def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 
 
 
-grafo1 = {
+grafo_heuristica_1 = {
     1: [[2, 3], [3, 2]],
     2: [[4, 4], [5, 1]],
     3: [[6, 3], [7, 1]],
@@ -93,7 +93,7 @@ heuristica1 = {
 
 
 #   Nodo: { Adyacente: costo }
-grafo2 = {
+grafo_heuristica_2 = {
     'Arad': [['Zerind', 75], ['Timisoara', 118], ['Sibiu', 140]],
     'Zerind': [['Oradea', 71], ['Arad', 75]],
     'Oradea': [['Sibiu', 151], ['Zerind', 71]],
@@ -143,7 +143,7 @@ heuristica2 = {
 }
 
 
-grafo3 = {
+grafo_heuristica_3 = {
     'S': [['A', 5], ['B', 9], ['D', 6]],
     'A': [['B', 3], ['G', 9]],
     'B': [['A', 2], ['C', 1]],
@@ -172,6 +172,6 @@ open = []
 closed = []
 pila = []
 
-# aStar(1, grafo1, heuristica1, 10)
-# aStar('Arad', grafo2, heuristica2, 'Bucharest')
-aStar('S', grafo3, heuristica3, 'G')
+aStar(1, grafo_heuristica_1, heuristica1, 10)
+# aStar('Arad', grafo_heuristica_2, heuristica2, 'Bucharest')
+# aStar('S', grafo_heuristica_3, heuristica3, 'G')
