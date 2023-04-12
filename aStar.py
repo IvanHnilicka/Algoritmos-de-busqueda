@@ -173,4 +173,5 @@ closed = []
 pila = []
 
 # aStar(1, grafo1, heuristica1, 10)
+# aStar('Arad', grafo2, heuristica2, 'Bucharest')
 aStar('S', grafo3, heuristica3, 'G')

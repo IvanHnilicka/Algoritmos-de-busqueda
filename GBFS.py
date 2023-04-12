@@ -25,7 +25,7 @@ def gbfs(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 #   Quitamos el nodo visitado de la lista open y lo agregamos en la lista closed
     open.pop(open.index(nodo_actual))
     closed.append(nodo_actual)
-    
+
 
     print("Ruta encontrada: ", end=" ")   
 #   Validaciones para dar formato de impresión en consola
@@ -141,4 +141,5 @@ heuristica2 = {
 open = []
 closed = []
 
-gbfs('Arad', grafo2, heuristica2, 'Bucharest')
+gbfs(1, grafo1, heuristica1, 10)
+# gbfs('Arad', grafo2, heuristica2, 'Bucharest')
