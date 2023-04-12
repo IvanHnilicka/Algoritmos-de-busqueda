@@ -45,7 +45,7 @@ grafo2 = {
     14: [13]
 }
 
-
+# Almacena los nodos adyacentes pendientes por visitar
 cola = []
 
 bfs(1, grafo1)

@@ -63,6 +63,7 @@ def aStar(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 
 
 
+#   Nodo: [ [Adyacente, costo] ]
 grafo_heuristica_1 = {
     1: [[2, 3], [3, 2]],
     2: [[4, 4], [5, 1]],
@@ -92,7 +93,7 @@ heuristica1 = {
 }
 
 
-#   Nodo: { Adyacente: costo }
+
 grafo_heuristica_2 = {
     'Arad': [['Zerind', 75], ['Timisoara', 118], ['Sibiu', 140]],
     'Zerind': [['Oradea', 71], ['Arad', 75]],
@@ -116,9 +117,6 @@ grafo_heuristica_2 = {
     'Neamt': [['Iasi', 87]]
 }
 
-
-
-#   Nodo: Heuristica
 heuristica2 = {
     'Arad': 366,
     'Bucharest': 0,
@@ -141,6 +139,7 @@ heuristica2 = {
     'Vaslui': 199,
     'Zerind': 374
 }
+
 
 
 grafo_heuristica_3 = {
@@ -168,9 +167,15 @@ heuristica3 = {
 
 
 
+# Almacena los caminos disponibles
 open = []
+
+# Almacena los nodos que ya fueron visitados
 closed = []
+
+# Almacena la ruta que se está siguiendo
 pila = []
+
 
 aStar(1, grafo_heuristica_1, heuristica1, 10)
 # aStar('Arad', grafo_heuristica_2, heuristica2, 'Bucharest')

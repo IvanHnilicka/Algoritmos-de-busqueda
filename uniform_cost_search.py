@@ -117,7 +117,11 @@ grafoCostos2 = {
 
 # Almacena los caminos disponibles para poder escoger el de menor costo
 cola = []
+
+# Almacena la ruta actual que se está siguiendo
 pila = []
+
+# Almacena los nodos que ya fueron visitados
 visitados = []
 
 ucs(1, grafoCostos1, 6)
