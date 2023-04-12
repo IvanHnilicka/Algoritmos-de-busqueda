@@ -7,11 +7,11 @@ def gbfs(nodo_inicial, grafo, heuristicas, nodo_objetivo):
         open.append(adyacente[0])
 
 
-
 #   El algoritmo continua hasta llegar al nodo objetivo
     while nodo_actual != nodo_objetivo:
         closed.append(nodo_actual)
         open.pop(open.index(nodo_actual))
+        nodo_actual = open[0]
 
 #       Buscamos el nodo con menor euristica en la lista open
         for nodo in open:
@@ -20,7 +20,13 @@ def gbfs(nodo_inicial, grafo, heuristicas, nodo_objetivo):
 
 #       Agregamos los adyacentes del nuevo nodo visitado
         for adyacente in grafo[nodo_actual]:
+            if closed.count(adyacente):
+                continue
+
+            if open.count(adyacente):
+                continue
             open.append(adyacente[0])
+
 
 #   Quitamos el nodo visitado de la lista open y lo agregamos en la lista closed
     open.pop(open.index(nodo_actual))
@@ -72,7 +78,6 @@ grafo_heuristica_1 = {
     10: []
 }
 
-
 #   Nodo: heuristica
 heuristica1 = {
     1: 13,
@@ -112,7 +117,6 @@ grafo_heuristica_2 = {
     'Neamt': [['Iasi', 87]]
 }
 
-
 heuristica2 = {
     'Arad': 366,
     'Bucharest': 0,
@@ -137,9 +141,34 @@ heuristica2 = {
 }
 
 
+grafo_heuristica_3 = {
+    'S': [['A', 5], ['B', 9], ['D', 6]],
+    'A': [['B', 3], ['G', 9]],
+    'B': [['A', 2], ['C', 1]],
+    'C': [['S', 6], ['G', 5], ['F', 7]],
+    'D': [['S', 1], ['C', 2], ['E', 2]],
+    'E': [['G', 7]],
+    'F': [['D', 2], ['G', 8]],
+    'G': []
+
+}
+
+heuristica3 = {
+    'S': 5,
+    'A': 7,
+    'B': 3,
+    'C': 4,
+    'D': 6,
+    'E': 5,
+    'F': 6,
+    'G': 0
+}
+
+
 
 open = []
 closed = []
 
 gbfs(1, grafo_heuristica_1, heuristica1, 10)
 # gbfs('Arad', grafo_heuristica_2, heuristica2, 'Bucharest')
+# gbfs('S', grafo_heuristica_3, heuristica3, 'G')

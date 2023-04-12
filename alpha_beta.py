@@ -9,11 +9,10 @@ def alpha_beta(nodo, grafo, utilidades, profundidad, alpha, beta, turnoMax):
             valor_max = max(valor_max, valor)
             alpha = max(alpha, valor_max)
 
-            if beta <= alpha:
-                print("Corte despues de nodo ", adyacente)
+            if alpha >= beta:
                 break
 
-        print("\nValor maximo: ", valor_max)
+        print("Valor maximo: ", valor_max)
         return valor_max
     
     else:
@@ -23,11 +22,10 @@ def alpha_beta(nodo, grafo, utilidades, profundidad, alpha, beta, turnoMax):
             valor_min = min(valor_min, valor)
             beta = min(beta, valor)
 
-            if beta <= alpha:
-                print("Corte despues de nodo ", adyacente)
+            if alpha >= beta:
                 break
 
-        print("\nValor minimo: ", valor_min)
+        print("Valor minimo: ", valor_min)
         return valor_min
     
 
@@ -70,4 +68,24 @@ utilidad1 = {
 }
 
 
-print(alpha_beta('A', grafo, utilidad1, 3, -999999999, 999999999, True))
+utilidad2 = {
+    'A': 0,
+    'B': 0,
+    'C': 0,
+    'D': 0,
+    'E': 0,
+    'F': 0,
+    'G': 0,
+    'H': 3,
+    'I': 5,
+    'J': 6,
+    'K': 9,
+    'L': 1,
+    'M': 2,
+    'N': 0,
+    'O': -1
+}
+
+
+# print("\nValor optimo: ", alpha_beta('A', grafo, utilidad1, 3, -999999999, 999999999, True))
+print("\nValor optimo: ", alpha_beta('A', grafo, utilidad2, 3, -999999999, 999999999, True))
