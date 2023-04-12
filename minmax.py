@@ -7,12 +7,14 @@ def minmax(nodo, grafo, profundidad, turnoMax):
         for adyacente in grafo[nodo]:
             valor = minmax(adyacente, grafo, profundidad - 1, False)
             valor_max = max(valor_max, valor)
+        print("Valor maximo: ", valor_max)
         return valor_max
     else:
         valor_min = 999999999
         for adyacente in grafo[nodo]:
             valor = minmax(adyacente, grafo, profundidad - 1, True)
             valor_min = min(valor_min, valor)
+        print("Valor minimo: ", valor_min)
         return valor_min
 
 
@@ -53,5 +55,4 @@ utilidad1 = {
 }
 
 
-
-print(minmax('A', grafo1, 3, True))
+minmax('A', grafo1, 3, True)
