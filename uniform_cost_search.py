@@ -115,6 +115,7 @@ grafoCostos2 = {
 }
 
 
+
 # Almacena los caminos disponibles para poder escoger el de menor costo
 cola = []
 
